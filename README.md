@@ -1,4 +1,4 @@
-### Custom App
+### Custom Auth App
 ```
 custom_auth/ 
 ├── __pycache__/
