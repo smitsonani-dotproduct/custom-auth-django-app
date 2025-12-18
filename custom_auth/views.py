@@ -14,14 +14,19 @@ class RegisterView(APIView):
 
     def post(self, request):
         serializers = RegisterSerializer(data=request.data)
+        print('serializers data =>',serializers.initial_data, type(serializers.initial_data)) # dict form of data 
+
         if serializers.is_valid():
             user = serializers.save()
+            print('user =>', user)
             token, _ = Token.objects.get_or_create(user=user)
             print("Token =>",token)
 
-            return Response({
-                "token":token.key,
-            },status=status.HTTP_201_CREATED)
+            return Response(
+                {
+                    "token":token.key,
+                },
+                status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     
 

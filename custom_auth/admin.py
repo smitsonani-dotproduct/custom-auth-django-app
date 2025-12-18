@@ -1,3 +1,6 @@
 from django.contrib import admin
+from custom_auth.models import User
 
-# Register your models here.
+@admin.register(User)
+class UserModel(admin.ModelAdmin):
+    list_display = ['email','username']
