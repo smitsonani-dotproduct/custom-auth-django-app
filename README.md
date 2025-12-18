@@ -1,5 +1,5 @@
 ### Custom App
-
+```
 custom_auth/ 
 ├── __pycache__/
 ├── migrations/
@@ -15,3 +15,4 @@ custom_auth/
 └── tests.py
 ├── urls.py
 ├── views.py
+```
