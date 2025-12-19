@@ -1,4 +1,7 @@
-### Custom Auth App
+**A Django REST Framework project implementing email and password–based user authentication.
+Includes user registration, login, and token authentication with protected API endpoints.**
+
+### Custom Auth App Folder Structure
 ```
 custom_auth/ 
 ├── __pycache__/
