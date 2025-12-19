@@ -4,12 +4,13 @@ from django.contrib.auth import authenticate, get_user_model
 
 User = get_user_model()
 
+
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
     class Meta:
-        model=User
-        fields = ['email', 'password']
+        model = User
+        fields = ["email", "password"]
 
     def create(self, validated_data):
         # user = User.objects.create_user(
@@ -19,15 +20,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         # return user
         return User.objects.create_user(**validated_data)
 
+
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        user = authenticate(
-            email=data['email'], 
-            password=data['password']
-        )
+        user = authenticate(email=data["email"], password=data["password"])
         if not user:
-            raise serializers.ValidationError('Invalid credentials')
+            raise serializers.ValidationError("Invalid credentials")
         return user
