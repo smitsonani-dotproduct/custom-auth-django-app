@@ -130,4 +130,4 @@ REST_FRAMEWORK = {
     # ],
 }
 
-AUTH_USER_MODEL = "custom_auth.User"
+AUTH_USER_MODEL = "custom_auth.User"  # now it will point to custom user model
