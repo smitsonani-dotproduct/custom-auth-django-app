@@ -14,6 +14,7 @@ class RegisterView(APIView):
     # permission_classes = [AllowAny]
 
     def post(self, request):
+        print("Req. data", request.data, type(request.data))
         serializers = RegisterSerializer(data=request.data)
         print(
             "serializers data =>",
@@ -22,10 +23,11 @@ class RegisterView(APIView):
         )  # dict form of data
 
         if serializers.is_valid():
-            user = serializers.save()
+            print("saving...")
+            user = serializers.save()  # internally call create method
             print("user =>", user)
-            token, _ = Token.objects.get_or_create(user=user)
-            print("Token =>", token)
+            token, created = Token.objects.get_or_create(user=user)
+            print("Token =>", token, created)
 
             return Response(
                 {
@@ -43,8 +45,8 @@ class LoginView(APIView):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.validated_data
-            token, _ = Token.objects.get_or_create(user=user)
-            print("Token =>", token)
+            token, created = Token.objects.get_or_create(user=user)
+            print("Token =>", token, created)
 
             return Response({"token": token.key, "email": user.email})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

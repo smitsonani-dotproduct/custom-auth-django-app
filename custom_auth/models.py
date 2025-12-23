@@ -6,7 +6,7 @@ class UserManager(BaseUserManager):
     # use_in_migrations = True
 
     def create_user(self, email, password=None, **extra_fields):
-        print("data =>", email, password)
+        print("data from model =>", email, password)
         if not email:
             raise ValueError("The Email field is required")
 
